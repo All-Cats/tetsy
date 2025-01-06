@@ -2,6 +2,14 @@ from g4f.client import Client
 from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+# Создаем объекты бота и диспетчера
+bot = Bot(os.getenv('TOKEN'))
+dp = Dispatcher()
 
 
 def g4f_question(qt:str) -> str:
@@ -12,13 +20,6 @@ def g4f_question(qt:str) -> str:
     )
     return response.choices[0].message.content
 
-
-# Вместо BOT TOKEN HERE нужно вставить токен вашего бота, полученный у @BotFather
-BOT_TOKEN = '8152673025:AAHK2TNUuyKmHrNxj4fQiyWu2lJbr3svn84'
-
-# Создаем объекты бота и диспетчера
-bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()
 
 # Этот хэндлер будет срабатывать на команду "/start"
 @dp.message(Command(commands=["start"]))
