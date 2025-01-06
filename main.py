@@ -18,24 +18,24 @@ BOT_TOKEN = '8152673025:AAHK2TNUuyKmHrNxj4fQiyWu2lJbr3svn84'
 
 # Создаем объекты бота и диспетчера
 bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher()т
+dp = Dispatcher()
 
 # Этот хэндлер будет срабатывать на команду "/start"
 @dp.message(Command(commands=["start"]))
 async def process_start_command(message: Message):
-    await message.answer('Привет!\nМеня зовут Эхо-бот!\nНапиши мне что-нибудь')
+    await message.answer('Привет! Это бесплатный аналог GPT-чата! \nВыберите 1 из команд: \n /start - главное меню \n /help - помощь по боту \n /ask - чат с ботом')
 
 
 @dp.message(Command(commands=['help']))
 async def process_help_command(message: Message):
     await message.answer(
-        'Напиши мне что-нибудь и в ответ '
-        'я пришлю тебе твое сообщение'
+        'Здравствуйте по любым вопросом вы можете связаться с разработчиком @SemyonWeb!'
     )
 
-@dp.message()
+@dp.message(Command(commands=['ask']))
 async def ask_command(message: Message):
     question = message.text  #Получаем текст после команды /ask
+    # await message.reply("Ваш запрос обробатывается.")
     if question:
         answer = g4f_question(question)
         await message.reply(answer)
