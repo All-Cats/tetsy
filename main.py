@@ -8,6 +8,7 @@ import os
 load_dotenv()
 
 # Создаем объекты бота и диспетчера
+
 bot = Bot(os.getenv('TOKEN'))
 dp = Dispatcher()
 
